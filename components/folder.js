@@ -1,26 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
-
-const FolderName = styled.div`
-  cursor: pointer;
-  &:hover {
-    font-weight: bold;
-    background: yellow;
-  }
-`;
+import Hover from "./hover";
 
 const Spacer = styled.div`
   display: grid;
   grid-gap: 1rem;
 `;
 
-const Folder = ({ name, children }) => {
+const Folder = ({ name, hoverStyle, children }) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <Spacer>
-      <FolderName onClick={() => setExpanded(!expanded)}>{`${
+      <Hover hoverStyle={hoverStyle} onClick={() => setExpanded(!expanded)}>{`${
         expanded ? "v" : ">"
-      } ${name}`}</FolderName>
+      } ${name}`}</Hover>
       {expanded && <Spacer style={{ marginLeft: "2rem" }}>{children}</Spacer>}
     </Spacer>
   );
